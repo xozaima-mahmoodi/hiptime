@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hiptime</title>
+<head>
+  <title>Hiptime</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
+
 <body>
   <nav class="navbar navbar-default">
     <div class="container">
-      <div class="navbar-header">
-        <%= link_to "Hiptime", root_path, class:"navbar-brand" %>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <% if current_user.present? %>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Log In", new_user_session_path %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
-      <% if user_signed_in? %>
-        <%= link_to "Create Item", new_item_path, class: "navbar-text navbar-link" %>
+    <div class="navbar-headr">
+      <%= link_to "Hiptime", root_path, class:"navbar-brand"%>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <% if current_user.present? %>
+       <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </li>
+      <% else %>
+      <li><%= link_to "Log in", new_user_session_path %></li>
+      <li><%=link_to "Sign Up", new_user_registration_path %></li>
       <% end %>
+    </ul>
+    <% if user_signed_in? %>
+    <%= link_to "Create Item", new_item_path, class: "navbar-text navbar-link" %>
+    <% end %>
     </div>
   </nav>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
-  <div class="container">
+  <div class="col-md-4 col-md-offset-2">
+   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>
+ </div>
+ <div class="container">
     <%= yield %>
-  </div>
+ </div>
 
-</body >
+</body>
 </html>
